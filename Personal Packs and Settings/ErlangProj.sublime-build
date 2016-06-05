@@ -1,0 +1,10 @@
+{
+    "cmd" : ["erlc",
+        "-I", "${project_path}/include",
+        "-I", "${project_path}/include/protobuf",
+        "-pa", "${project_path}/ebin",
+        "-o", "${project_path}/ebin", "$file"
+    ],
+    "file_regex" : "^(.*):([0-9]+): *",
+    "selector": "source.erl"
+}

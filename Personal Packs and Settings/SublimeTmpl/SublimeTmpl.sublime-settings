@@ -1,0 +1,25 @@
+{
+    "erlang-normal" : {
+        "syntax" : "Packages/Erlang/Erlang.tmLanguage"
+    },
+    "erlang-application" : {
+        "syntax" : "Packages/Erlang/Erlang.tmLanguage"
+    },
+    "erlang-supervisor" : {
+        "syntax" : "Packages/Erlang/Erlang.tmLanguage"
+    },
+    "erlang-gen_server" : {
+        "syntax" : "Packages/Erlang/Erlang.tmLanguage"
+    },
+    "erlang-gen_event" : {
+        "syntax" : "Packages/Erlang/Erlang.tmLanguage"
+    },
+    "erlang-gen_fsm" : {
+        "syntax" : "Packages/Erlang/Erlang.tmLanguage"
+    },
+    "date_format" : "%Y-%m-%d",
+    "attr" : {
+        "author" : "Hantao Pan",
+        "email" : "panhantao@gmail.com"
+    }
+}

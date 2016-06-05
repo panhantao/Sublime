@@ -1,0 +1,147 @@
+%%%-----------------------------------------------------------------------------
+%%% Module  : ${1:module_name}
+%%% Author  : ${2:${author}}
+%%% Created : ${date}
+%%% Description : ${3: }
+%%%
+%%%-----------------------------------------------------------------------------
+-module (${4:}).
+-behaviour(gen_fsm).
+
+%%------------------------------------------------------------------------------
+%% Include files
+%%------------------------------------------------------------------------------
+${5:}
+
+%%==============================================================================
+%% External exports
+%%==============================================================================
+-export ([
+    start_link/0
+]).
+
+%% gen_fsm callbacks
+-export ([
+    init/1,
+    state_name/2,
+    state_name/3,
+    handle_event/3,
+    handle_sync_event/4,
+    handle_info/3,
+    terminate/3,
+    code_change/4
+]).
+
+%%------------------------------------------------------------------------------
+%% Records
+%%------------------------------------------------------------------------------
+-record(state, {}).
+
+%%==============================================================================
+%% External functions
+%%==============================================================================
+%%------------------------------------------------------------------------------
+%% Function: start_link/0
+%% Description: Starts the server
+%%------------------------------------------------------------------------------
+start_link() ->
+    gen_fsm:start_link({local, ?MODULE}, ?MODULE, [], []).
+
+%%==============================================================================
+%% Server functions
+%%==============================================================================
+%%------------------------------------------------------------------------------
+%% Function: init/1
+%% Description: Initialize the server
+%% Returns: {ok, StateName, StateData}          |
+%%          {ok, StateName, StateData, Timeout} |
+%%          ignore                              |
+%%          {stop, Reason}
+%%------------------------------------------------------------------------------
+init(_Args) ->
+    process_flag(trap_exit, true),
+    {ok, state_name, #state{}}.
+
+%%------------------------------------------------------------------------------
+%% Function: StateName/2
+%% Returns: {next_state, NextStateName, NewStateData}          |
+%%          {next_state, NextStateName, NewStateData, Timeout} |
+%%          {next_state, NextStateName, NewStateData, hibernate}|
+%%          {stop, Reason, NewStateData}
+%%------------------------------------------------------------------------------
+state_name(Event, StateData) ->
+    {next_state, state_name, StateData}.
+
+%%------------------------------------------------------------------------------
+%% Function: StateName/3
+%% Returns: {reply, Reply, NextStateName, NewStateData}             |
+%%          {reply, Reply, NextStateName, NewStateData, Timeout}    |
+%%          {reply, Reply, NextStateName, NewStateData, hibernate}  |
+%%          {next_state, NextStateName, NewStateData}               |
+%%          {next_state, NextStateName, NewStateData, Timeout}      |
+%%          {next_state, NextStateName, NewStateData, hibernate}    |
+%%          {stop, Reason, NewStateData}
+%%------------------------------------------------------------------------------
+state_name(Event, From, StateData) ->
+    Reply = ok,
+    {reply, Reply, state_name, StateData}.
+
+%%------------------------------------------------------------------------------
+%% Function: handle_event/3
+%% Returns: {next_state, NextStateName, NewStateData}          |
+%%          {next_state, NextStateName, NewStateData, Timeout} |
+%%          {next_state, NextStateName, NewStateData, hibernate}|
+%%          {stop, Reason, NewStateData}
+%%------------------------------------------------------------------------------
+handle_event(Event, StateName, StateData) ->
+    {next_state, StateName, StateData}.
+
+%%------------------------------------------------------------------------------
+%% Function: handle_sync_event/3
+%% Returns: {reply, Reply, NextStateName, NewStateData}             |
+%%          {reply, Reply, NextStateName, NewStateData, Timeout}    |
+%%          {reply, Reply, NextStateName, NewStateData, hibernate}  |
+%%          {next_state, NextStateName, NewStateData}               |
+%%          {next_state, NextStateName, NewStateData, Timeout}      |
+%%          {next_state, NextStateName, NewStateData, hibernate}    |
+%%          {stop, Reason, NewStateData}
+%%------------------------------------------------------------------------------
+handle_sync_event(Event, From, StateName, StateData) ->
+    Reply = ok,
+    {reply, Reply, StateName, StateData}.
+
+%%------------------------------------------------------------------------------
+%% Function: handle_info/3
+%% Returns: {next_state, NextStateName, NewStateData}          |
+%%          {next_state, NextStateName, NewStateData, Timeout} |
+%%          {next_state, NextStateName, NewStateData, hibernate}|
+%%          {stop, Reason, NewStateData}
+%%------------------------------------------------------------------------------
+handle_info(Info, StateName, StateData) ->
+    {next_state, StateName, StateData}.
+
+%%------------------------------------------------------------------------------
+%% Function: terminate/3
+%% Description: Shutdown the server
+%% Returns: any (ignored by gen_server)
+%%------------------------------------------------------------------------------
+terminate(_Reason, StateName, StateData) ->
+    try
+        ok
+    catch
+        _:Ex ->
+            %% todo error handling
+            ok
+    end.
+
+%%------------------------------------------------------------------------------
+%% Function: code_change/4
+%% Description: Convert process state when code is changed
+%% Returns: {ok, NewState}
+%%------------------------------------------------------------------------------
+code_change(_OldVsn, StateName, StateData, _Extra) ->
+    {ok, StateName, StateData}.
+
+%%==============================================================================
+%% Internal functions
+%%==============================================================================

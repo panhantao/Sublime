@@ -1,0 +1,154 @@
+%%%-----------------------------------------------------------------------------
+%%% Module  : ${1:module_name}
+%%% Author  : ${2:${author}}
+%%% Created : ${date}
+%%% Description : ${3: }
+%%%
+%%%-----------------------------------------------------------------------------
+-module (${4:}).
+-behaviour(gen_server).
+
+%%------------------------------------------------------------------------------
+%% Include files
+%%------------------------------------------------------------------------------
+${5:}
+
+%%==============================================================================
+%% External exports
+%%==============================================================================
+-export ([
+    start_link/0
+]).
+
+%% gen_server callbacks
+-export ([
+    init/1,
+    handle_call/3,
+    handle_cast/2,
+    handle_info/2,
+    terminate/2,
+    code_change/3
+]).
+
+%%------------------------------------------------------------------------------
+%% Records
+%%------------------------------------------------------------------------------
+-record(state, {}).
+
+%%==============================================================================
+%% External functions
+%%==============================================================================
+%%------------------------------------------------------------------------------
+%% Function: start_link/0
+%% Description: Starts the server
+%%------------------------------------------------------------------------------
+start_link() ->
+    gen_server:start_link({local, ?MODULE}, ?MODULE, [], []).
+
+%%==============================================================================
+%% Server functions
+%%==============================================================================
+%%------------------------------------------------------------------------------
+%% Function: init/1
+%% Description: Initialize the server
+%% Returns: {ok, State}          |
+%%          {ok, State, Timeout} |
+%%          ignore               |
+%%          {stop, Reason}
+%%------------------------------------------------------------------------------
+init(_Args) ->
+    process_flag(trap_exit, true),
+    {ok, #state{}}.
+
+%%------------------------------------------------------------------------------
+%% Function: handle_call/3
+%% Description: Handling call messages
+%% Returns: {reply, Reply, NewState}            |
+%%          {reply, Reply, NewState, Timeout}   |
+%%          {reply, Reply, NewState, hibernate} |
+%%          {noreply, NewState}                 |
+%%          {noreply, NewState, Timeout}        |
+%%          {noreply, NewState, hibernate}      |
+%%          {stop, Reason, Reply, NewState}   | (terminate/2 is called)
+%%          {stop, Reason, NewState}          | (terminate/2 is called)
+%%------------------------------------------------------------------------------
+handle_call(Request, From, State) ->
+    try
+        do_call(Request, From, State)
+    catch
+        _:Reason ->
+            %% todo error handling
+            {reply, {error, Reason}, State}
+    end.
+
+do_call(_Request, _From, State) ->
+    %% todo error handling
+    {reply, {error, request_not_match}, State}.
+
+%%------------------------------------------------------------------------------
+%% Function: handle_cast/2
+%% Description: Handling cast messages
+%% Returns: {noreply, NewState}                 |
+%%          {noreply, NewState, Timeout}        |
+%%          {noreply, NewState, hibernate}      |
+%%          {stop, Reason, NewState}            | (terminate/2 is called)
+%%------------------------------------------------------------------------------
+handle_cast(Msg, State) ->
+    try
+        do_cast(Msg, State)
+    catch
+        _:Reason ->
+            %% todo error handling
+            {noreply, State}
+    end.
+
+do_cast(Msg, State) ->
+    %% todo error handling
+    {noreply, State}.
+
+%%------------------------------------------------------------------------------
+%% Function: handle_info/2
+%% Description: Handling non call/cast messages
+%% Returns: {noreply, NewState}                 |
+%%          {noreply, NewState, Timeout}        |
+%%          {noreply, NewState, hibernate}      |
+%%          {stop, Reason, Reply, NewState}   | (terminate/2 is called)
+%%------------------------------------------------------------------------------
+handle_info(Info, State) ->
+    try
+        do_info(Info, State)
+    catch
+        _:Reason ->
+            %% todo error handling
+            {noreply, State}
+    end.
+
+do_info(Info, State) ->
+    %% todo error handling
+    {noreply, State}.
+
+%%------------------------------------------------------------------------------
+%% Function: terminate/2
+%% Description: Shutdown the server
+%% Returns: any (ignored by gen_server)
+%%------------------------------------------------------------------------------
+terminate(_Reason, State) ->
+    try
+        ok
+    catch
+        _:Ex ->
+            %% todo error handling
+            ok
+    end.
+
+%%------------------------------------------------------------------------------
+%% Function: code_change/3
+%% Description: Convert process state when code is changed
+%% Returns: {ok, NewState}
+%%------------------------------------------------------------------------------
+code_change(_OldVsn, State, _Extra) ->
+    {ok, State}.
+
+%%==============================================================================
+%% Internal functions
+%%==============================================================================

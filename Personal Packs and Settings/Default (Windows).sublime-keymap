@@ -1,0 +1,55 @@
+[
+    // Sublime
+    {
+        "keys": ["f3"],
+        "command": "find_under"
+    },
+    {
+        "keys": ["ctrl+f3"],
+        "command": "find_next"
+    },
+    {
+        "keys": ["ctrl+alt+k", "ctrl+alt+k"],
+        "command": "prompt_select_workspace"
+    },
+    // CTags
+    {
+        "command": "navigate_to_definition",
+        "keys": ["ctrl+e", "ctrl+e"]
+    },
+    {
+        "command": "jump_prev",
+        "keys": ["ctrl+q", "ctrl+q"]
+    },
+    // SublimeTmpl
+    {
+        "keys" : ["ctrl+alt+shift+e", "ctrl+alt+shift+n"],
+        "command" : "sublime_tmpl",
+        "args" : {"type" : "erlang-normal"}
+    },
+    {
+        "keys" : ["ctrl+alt+shift+e", "ctrl+alt+shift+a"],
+        "command" : "sublime_tmpl",
+        "args" : {"type" : "erlang-application"}
+    },
+    {
+        "keys" : ["ctrl+alt+shift+e", "ctrl+alt+shift+s"],
+        "command" : "sublime_tmpl",
+        "args" : {"type" : "erlang-supervisor"}
+    },
+    {
+        "keys" : ["ctrl+alt+shift+e", "ctrl+alt+shift+g", "ctrl+alt+shift+s"],
+        "command" : "sublime_tmpl",
+        "args" : {"type" : "erlang-gen_server"}
+    },
+    {
+        "keys" : ["ctrl+alt+shift+e", "ctrl+alt+shift+g", "ctrl+alt+shift+e"],
+        "command" : "sublime_tmpl",
+        "args" : {"type" : "erlang-gen_event"}
+    },
+    {
+        "keys" : ["ctrl+alt+shift+e", "ctrl+alt+shift+g", "ctrl+alt+shift+f"],
+        "command" : "sublime_tmpl",
+        "args" : {"type" : "erlang-gen_fsm"}
+    }
+]
