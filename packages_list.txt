@@ -1,0 +1,29 @@
+Base:
+    Package Control 
+    https://packagecontrol.io/
+    
+    All Autocomplete
+    https://packagecontrol.io/packages/All%20Autocomplete
+    
+    Bracket Highlighter
+    https://packagecontrol.io/packages/BracketHighlighter
+    
+    CTags
+    https://packagecontrol.io/packages/CTags
+    
+    SVN
+    https://packagecontrol.io/packages/SVN
+    
+    Sidebar Enhancements
+    https://packagecontrol.io/packages/SideBarEnhancements
+    
+Language:
+    Protobuf Syntax Highlighting
+    https://packagecontrol.io/packages/Protobuf%20Syntax%20Hightlighting
+    
+    SublimeTmpl
+    https://packagecontrol.io/packages/SublimeTmpl
+    
+Theme:
+    Material Theme
+    https://packagecontrol.io/packages/Material%20Theme
